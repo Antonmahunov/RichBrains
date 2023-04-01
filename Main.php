@@ -10,15 +10,18 @@ class Main
     public function getShapeCornersCount(string ...$figureNames): void
     {
         foreach ($figureNames as $figureName) {
-            $shape = match (strtolower($figureName)) {
-                'circle' => new Circle(),
-                'square' => new Square(),
-                default => "$figureName - not defined"
-            };
-
-            echo $shape . PHP_EOL;
+            try {
+                $shape = match (strtolower($figureName)) {
+                    'circle' => new Circle(),
+                    'square' => new Square(),
+                    default => throw new \Exception("$figureName - not defined")
+                };
+                echo $shape . PHP_EOL;
+            } catch (\Exception $exception) {
+                echo $exception->getMessage() . PHP_EOL;
+            }
         }
     }
 }
 
-(new Main())->getShapeCornersCount('Circle', 'qwe', 'Triangle');
+(new Main())->getShapeCornersCount('Circle', 'Square', 'Triangle', 1);
