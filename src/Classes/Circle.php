@@ -2,9 +2,9 @@
 
 namespace App\Classes;
 
-use App\Base\Figure;
+use App\Base\AbstractFigure;
 
-class Circle extends Figure
+class Circle extends AbstractFigure
 {
     public const NAME = 'circle';
     public const CORNERS = 0;

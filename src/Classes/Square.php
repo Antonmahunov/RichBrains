@@ -2,9 +2,9 @@
 
 namespace App\Classes;
 
-use App\Base\Figure;
+use App\Base\AbstractFigure;
 
-class Square extends Figure
+class Square extends AbstractFigure
 {
     public const NAME = 'square';
     public const CORNERS = 4;

@@ -2,7 +2,7 @@
 
 namespace App\Base;
 
-abstract class Figure
+abstract class AbstractFigure
 {
     public function __construct(
         protected string $name,

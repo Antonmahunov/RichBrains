@@ -4,21 +4,20 @@ declare(strict_types=1);
 
 require_once __DIR__ . '/vendor/autoload.php';
 
-use App\Classes\Circle;
-use App\Classes\Square;
+use App\Factory\FigureFactory;
 
 class Main
 {
     public function getShapeCornersCount(string ...$figureNames): void
     {
         foreach ($figureNames as $figureName) {
-            $shape = match (strtolower($figureName)) {
-                Circle::NAME => new Circle(),
-                Square::NAME => new Square(),
-                default => "$figureName - not defined"
-            };
+            try {
+                $shape = FigureFactory::create($figureName);
 
-            echo $shape . PHP_EOL;
+                echo $shape . PHP_EOL;
+            } catch (Exception $exception) {
+                echo $exception->getMessage() . PHP_EOL;
+            }
         }
     }
 }
