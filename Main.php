@@ -12,14 +12,16 @@ class Main
     public function getShapeCornersCount(string ...$figureNames): void
     {
         foreach ($figureNames as $figureName) {
-                $shape = match (strtolower($figureName)) {
-                    Circle::NAME => new Circle(),
-                    Square::NAME => new Square(),
-                    default => "$figureName - not defined"
-                };
-                 echo $shape . PHP_EOL;
+            $shape = match (strtolower($figureName)) {
+                Circle::NAME => new Circle(),
+                Square::NAME => new Square(),
+                default => "$figureName - not defined"
+            };
+
+            echo $shape . PHP_EOL;
         }
     }
 }
 
-(new Main())->getShapeCornersCount('Circle', 'Square', 'Triangle');
+$args = array_slice($argv, 1, count($argv));
+(new Main())->getShapeCornersCount(...$args);
