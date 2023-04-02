@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 require_once __DIR__ . '/vendor/autoload.php';
 
 use App\Classes\Circle;
@@ -10,18 +12,14 @@ class Main
     public function getShapeCornersCount(string ...$figureNames): void
     {
         foreach ($figureNames as $figureName) {
-            try {
                 $shape = match (strtolower($figureName)) {
-                    'circle' => new Circle(),
-                    'square' => new Square(),
-                    default => throw new \Exception("$figureName - not defined")
+                    Circle::NAME => new Circle(),
+                    Square::NAME => new Square(),
+                    default => "$figureName - not defined"
                 };
-                echo $shape . PHP_EOL;
-            } catch (\Exception $exception) {
-                echo $exception->getMessage() . PHP_EOL;
-            }
+                 echo $shape . PHP_EOL;
         }
     }
 }
 
-(new Main())->getShapeCornersCount('Circle', 'Square', 'Triangle', 1);
+(new Main())->getShapeCornersCount('Circle', 'Square', 'Triangle');
